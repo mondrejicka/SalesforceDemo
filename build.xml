@@ -1,0 +1,46 @@
+<project name="Source control demo"
+    default="test"
+    basedir="."
+    xmlns:sf="antlib:com.salesforce">
+
+    <property file="build.properties"/>
+    <property environment="env"/>
+
+    <!-- Setting default value for username, password and session id properties to empty string 
+         so unset values are treated as empty. Without this, ant expressions such as ${sf.username}
+         will be treated literally.
+    -->
+    <condition property="username" value="">
+        <not>
+            <isset property="username"/>
+        </not>
+    </condition>
+    <condition property="password" value="">
+        <not>
+            <isset property="password"/>
+        </not>
+    </condition>
+    <condition property="sf.sessionId" value="">
+        <not>
+            <isset property="sf.sessionId"/>
+        </not>
+    </condition>
+
+    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+        <classpath>
+            <pathelement location="./ant-salesforce.jar" />        	
+        </classpath>
+    </taskdef>
+
+    <target name="deploy">
+	    <sf:deploy username="${csolutor.username}"
+		    password="${csolutor.password}"
+		    sessionId="${sf.sessionId}"
+		    serverurl="${prod.serverurl}"
+		    maxPoll="${sf.maxPoll}"
+		    deployRoot="/"
+            checkOnly="true"
+		    rollbackOnError="true"/>
+    </target>
+
+</project>
