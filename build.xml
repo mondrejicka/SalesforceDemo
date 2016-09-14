@@ -1,5 +1,5 @@
 <project name="Source control demo"
-    default="test"
+    default="deploy"
     basedir="."
     xmlns:sf="antlib:com.salesforce">
 
