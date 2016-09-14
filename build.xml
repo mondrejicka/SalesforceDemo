@@ -39,7 +39,7 @@
 		    serverurl="${prod.serverurl}"
 		    maxPoll="${sf.maxPoll}"
 		    deployRoot="/"
-            checkOnly="true"
+            checkOnly="false"
 		    rollbackOnError="true"/>
     </target>
 
